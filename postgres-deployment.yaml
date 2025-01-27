@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: crud-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:16  # Postgres version, same as docker-compose
+        env:
+        - name: POSTGRES_DB
+          value: "postgres"  # DB name from docker-compose
+        - name: POSTGRES_USER
+          value: "postgres"  # DB user from docker-compose
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-password  # Referring to the secret created earlier
+              key: db-password
