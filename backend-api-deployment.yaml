@@ -15,20 +15,20 @@ spec:
     spec:
       containers:
       - name: backend-api
-        image: final_assignment-backend  # The local image
-        imagePullPolicy: Never  # Avoid pulling from Docker Hub, use the local image
+        image: final_assignment-backend
+        imagePullPolicy: Never
         ports:
-        - containerPort: 8000  # The container exposes port 8000 (as per docker-compose)
+        - containerPort: 8000 
         env:
-        - name: DB_ADDRESS
-          value: "postgres"  # The address of the Postgres service (name of the service in K8s)
-        - name: DB_USERNAME
-          value: "postgres"  # The username for the DB
-        - name: DB_NAME
-          value: "postgres"  # The DB name
-        - name: DB_PASSWORD
+        - name: db_address
+          value: "postgres" 
+        - name: db_username
+          value: "postgres" 
+        - name: db_name
+          value: "postgres" 
+        - name: db_password
           valueFrom:
             secretKeyRef:
-              name: db-password  # Referencing the secret for DB password
-              key: db-password   # The key inside the secret
+              name: db-password  
+              key: db-password 
 ---

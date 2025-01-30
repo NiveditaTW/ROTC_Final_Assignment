@@ -15,14 +15,14 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:16  # Postgres version, same as docker-compose
+        image: postgres:16
         env:
         - name: POSTGRES_DB
-          value: "postgres"  # DB name from docker-compose
+          value: "postgres"
         - name: POSTGRES_USER
-          value: "postgres"  # DB user from docker-compose
+          value: "postgres" 
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: db-password  # Referring to the secret created earlier
+              name: db-password
               key: db-password
